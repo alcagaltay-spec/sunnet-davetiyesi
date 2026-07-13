@@ -1,24 +1,23 @@
 import { useEffect, useRef } from "react";
 import "./OpeningExperience.css";
 
-const particles = Array.from({ length: 42 });
+const INTRO_DURATION = 7000;
+const particles = Array.from({ length: 18 });
 
 const openingAsset = (file) =>
   `${import.meta.env.BASE_URL}images/opening/${file}`;
 
 export default function OpeningExperience({ onComplete }) {
+  const introRef = useRef(null);
   const audioRef = useRef(null);
 
   useEffect(() => {
     const audio = audioRef.current;
     audio?.play().catch(() => {});
-
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 18200);
+    const timer = window.setTimeout(onComplete, INTRO_DURATION);
 
     return () => {
-      clearTimeout(timer);
+      window.clearTimeout(timer);
       if (audio) {
         audio.pause();
         audio.currentTime = 0;
@@ -27,57 +26,45 @@ export default function OpeningExperience({ onComplete }) {
   }, [onComplete]);
 
   return (
-    <section className="cinematic-ring-intro">
+    <section
+      ref={introRef}
+      className="cinematic-ring-intro"
+      aria-label="Alyansların sinematik açılışı"
+    >
       <audio
         ref={audioRef}
-        src={`${import.meta.env.BASE_URL}music/luxury-wedding-ring-intro-18s.wav`}
+        src={`${import.meta.env.BASE_URL}music/ring-intro-7s.wav`}
         preload="auto"
       />
+      <div className="intro-ambient" />
+      <div className="intro-orbit intro-orbit-one" />
+      <div className="intro-orbit intro-orbit-two" />
 
-      <div className="scene-black" />
-      <div className="scene-atmosphere" />
-      <div className="scene-depth-light" />
-      <div className="distant-gold-source" />
+      <div className="ring-stage">
+        <div className="ring-halo" />
 
-      <div className="ring-camera">
-        <img
-          className="ring-glow-layer"
-          src={openingAsset("ring-glow.png")}
-          alt=""
-        />
+        <div className="ring-frame ring-frame-one">
+          <img src={openingAsset("ring-1.png")} alt="Altın alyans" />
+        </div>
 
-        <img
-          className="ring-image ring-one"
-          src={openingAsset("ring-1.png")}
-          alt=""
-        />
+        <div className="ring-frame ring-frame-two">
+          <img src={openingAsset("ring-2.png")} alt="Altın alyans" />
+        </div>
 
-        <img
-          className="ring-image ring-two"
-          src={openingAsset("ring-2.png")}
-          alt=""
-        />
-
-        <div className="metal-sweep sweep-one" />
-        <div className="metal-sweep sweep-two" />
+        <div className="gold-flare" />
+        <div className="light-sweep" />
       </div>
 
-      <div className="particle-field">
+      <div className="gold-dust" aria-hidden="true">
         {particles.map((_, index) => (
-          <span
-            key={index}
-            className={`gold-particle particle-${index + 1}`}
-          />
+          <i key={index} style={{ "--particle": index }} />
         ))}
       </div>
 
-      <div className="cinematic-vignette" />
-
-      <img
-        className="hero-transition-light"
-        src={openingAsset("transition-light.png")}
-        alt=""
-      />
+      <div className="intro-vignette" />
+      <div className="intro-letterbox intro-letterbox-top" />
+      <div className="intro-letterbox intro-letterbox-bottom" />
+      <div className="intro-exit-flash" />
     </section>
   );
 }

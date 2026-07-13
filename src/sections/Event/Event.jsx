@@ -1,6 +1,8 @@
 import "./Event.css";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
+const venueName = "Royal Garden Davet Salonu";
+const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(venueName)}&travelmode=driving&dir_action=navigate`;
 
 export default function Event() {
   const goToCountdown = () => {
@@ -39,9 +41,15 @@ export default function Event() {
           <strong>Royal Garden Davet Salonu</strong>
         </div>
 
-        <button className="event-map-button">
+        <a
+          className="event-map-button"
+          href={directionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${venueName} için yol tarifi al`}
+        >
           Yol Tarifi Al
-        </button>
+        </a>
 
         <div className="event-next" onClick={goToCountdown}>
           <div className="event-line" />

@@ -3,468 +3,268 @@
   inset: 0;
   z-index: 9999;
   overflow: hidden;
-  background: #01030a;
+  isolation: isolate;
+  background: #080604;
+  animation: intro-fade 7s linear both;
 }
 
-/* background */
-.scene-black {
+.intro-ambient {
   position: absolute;
-  inset: 0;
-  z-index: 20;
-  background: #01030a;
-  animation: blackCurtain 20s ease forwards;
-}
-
-.scene-atmosphere {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
+  inset: -20%;
   background:
-    radial-gradient(circle at 50% 48%, rgba(212, 175, 55, 0.08), transparent 24%),
-    radial-gradient(circle at 50% 64%, rgba(255, 255, 255, 0.035), transparent 34%),
-    linear-gradient(to bottom, #01030a, #050814 48%, #01030a);
-  animation: atmosphereWake 20s ease forwards;
-}
-
-.scene-depth-light {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 2;
-  width: 380px;
-  height: 380px;
-  transform: translate(-50%, -50%) scale(0.2);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.18), transparent 68%);
-  filter: blur(28px);
+    radial-gradient(circle at 50% 48%, rgba(255, 225, 165, 0.24), transparent 16%),
+    radial-gradient(circle at 50% 50%, #5b452d 0, #211a13 31%, #090705 64%);
   opacity: 0;
-  animation: depthLight 20s ease forwards;
+  animation: ambient-reveal 7s ease-in-out both;
 }
 
-.distant-gold-source {
+.intro-orbit {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 3;
-  width: 7px;
-  height: 7px;
+  width: min(92vw, 570px);
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 219, 145, 0.12);
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: inset 0 0 55px rgba(224, 171, 80, 0.04);
+}
+
+.intro-orbit-one {
+  animation: orbit-one 7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.intro-orbit-two {
+  width: min(72vw, 440px);
+  animation: orbit-two 7s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.ring-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(108vw, 610px);
+  aspect-ratio: 1;
   transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: #f8e9a5;
-  box-shadow:
-    0 0 16px rgba(248, 233, 165, 0.95),
-    0 0 46px rgba(212, 175, 55, 0.5);
-  opacity: 0;
-  animation: distantSource 20s ease forwards;
+  perspective: 1000px;
 }
 
-/* camera */
-.ring-camera {
+.ring-frame {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  z-index: 8;
-  width: 380px;
-  height: 380px;
-  transform: translate(-50%, -50%) scale(0.22);
-  opacity: 0;
-  filter: blur(16px);
-  animation: ringCamera 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  transform-style: preserve-3d;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  will-change: transform, opacity, filter;
 }
 
-.ring-image {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 210px;
+.ring-frame img {
+  display: block;
+  width: 72%;
   height: auto;
   user-select: none;
   pointer-events: none;
-  transform-origin: center;
-  filter:
-    drop-shadow(0 28px 50px rgba(0, 0, 0, 0.52))
-    drop-shadow(0 0 22px rgba(212, 175, 55, 0.18));
+  filter: drop-shadow(0 30px 35px rgba(0, 0, 0, .55));
 }
 
-.ring-one {
-  z-index: 10;
-  animation: ringOneCinema 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.ring-frame-one {
+  z-index: 4;
+  animation: ring-one-arrival 7s cubic-bezier(.16,1,.3,1) both;
 }
 
-.ring-two {
-  z-index: 9;
-  animation: ringTwoCinema 20s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.ring-frame-two {
+  z-index: 3;
+  animation: ring-two-arrival 7s cubic-bezier(.16,1,.3,1) both;
 }
 
-.ring-glow-layer {
+.ring-halo {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 7;
-  width: 430px;
-  max-width: none;
-  transform: translate(-50%, -50%) scale(0.3);
-  opacity: 0;
-  pointer-events: none;
-  animation: ringGlowCinema 20s ease forwards;
-}
-
-/* moving highlights */
-.metal-sweep {
-  position: absolute;
-  z-index: 12;
-  top: 38%;
-  width: 120px;
-  height: 8px;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 248, 218, 0.75),
-    transparent
-  );
-  filter: blur(5px);
-  opacity: 0;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-.sweep-one {
-  left: 22%;
-  transform: rotate(-18deg);
-  animation: sweepOne 20s ease forwards;
-}
-
-.sweep-two {
-  right: 22%;
-  transform: rotate(14deg);
-  animation: sweepTwo 20s ease forwards;
-}
-
-/* particles */
-.particle-field {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-}
-
-.gold-particle {
-  position: absolute;
-  left: 50%;
-  top: 52%;
-  width: 2.5px;
-  height: 2.5px;
+  z-index: 1;
+  width: 54%;
+  aspect-ratio: 1;
   border-radius: 50%;
-  background: #f8e9a5;
-  opacity: 0;
-  box-shadow: 0 0 14px rgba(248, 233, 165, 0.9);
-  animation: particleCinema 20s ease forwards;
+  background: radial-gradient(circle, rgba(255, 226, 168, .42), rgba(208, 142, 48, .12) 38%, transparent 70%);
+  filter: blur(24px);
+  animation: halo-pulse 7s ease-in-out both;
 }
 
-/* particle variations */
-.particle-1 { --x: -120px; --y: -90px; --s: .8; animation-delay: 8.2s; }
-.particle-2 { --x: 90px; --y: -70px; --s: .6; animation-delay: 8.4s; }
-.particle-3 { --x: -60px; --y: 80px; --s: .7; animation-delay: 8.6s; }
-.particle-4 { --x: 130px; --y: 40px; --s: .9; animation-delay: 8.8s; }
-.particle-5 { --x: -150px; --y: 20px; --s: .5; animation-delay: 9s; }
-.particle-6 { --x: 40px; --y: -130px; --s: .8; animation-delay: 9.2s; }
-.particle-7 { --x: 160px; --y: -30px; --s: .6; animation-delay: 9.4s; }
-.particle-8 { --x: -90px; --y: -140px; --s: .7; animation-delay: 9.6s; }
-.particle-9 { --x: 20px; --y: 120px; --s: .5; animation-delay: 9.8s; }
-.particle-10 { --x: -30px; --y: -80px; --s: .9; animation-delay: 10s; }
-.particle-11 { --x: 110px; --y: 100px; --s: .6; animation-delay: 10.2s; }
-.particle-12 { --x: -170px; --y: -60px; --s: .8; animation-delay: 10.4s; }
-.particle-13 { --x: 70px; --y: 150px; --s: .5; animation-delay: 10.6s; }
-.particle-14 { --x: -130px; --y: 130px; --s: .7; animation-delay: 10.8s; }
-.particle-15 { --x: 180px; --y: 70px; --s: .6; animation-delay: 11s; }
-.particle-16 { --x: -20px; --y: -160px; --s: .8; animation-delay: 11.2s; }
-.particle-17 { --x: 140px; --y: -120px; --s: .7; animation-delay: 11.4s; }
-.particle-18 { --x: -190px; --y: 70px; --s: .5; animation-delay: 11.6s; }
-.particle-19 { --x: 0px; --y: 170px; --s: .8; animation-delay: 11.8s; }
-.particle-20 { --x: 95px; --y: -15px; --s: .4; animation-delay: 12s; }
-.particle-21 { --x: -75px; --y: 15px; --s: .7; animation-delay: 12.2s; }
-.particle-22 { --x: 200px; --y: -10px; --s: .6; animation-delay: 12.4s; }
-.particle-23 { --x: -210px; --y: -20px; --s: .5; animation-delay: 12.6s; }
-.particle-24 { --x: 50px; --y: 210px; --s: .7; animation-delay: 12.8s; }
-.particle-25 { --x: -50px; --y: 210px; --s: .5; animation-delay: 13s; }
-.particle-26 { --x: 210px; --y: 125px; --s: .8; animation-delay: 13.2s; }
-.particle-27 { --x: -210px; --y: 125px; --s: .6; animation-delay: 13.4s; }
-.particle-28 { --x: 125px; --y: -210px; --s: .4; animation-delay: 13.6s; }
-.particle-29 { --x: -125px; --y: -210px; --s: .6; animation-delay: 13.8s; }
-.particle-30 { --x: 230px; --y: -90px; --s: .5; animation-delay: 14s; }
-.particle-31 { --x: -230px; --y: -90px; --s: .7; animation-delay: 14.2s; }
-.particle-32 { --x: 0px; --y: -230px; --s: .6; animation-delay: 14.4s; }
-.particle-33 { --x: 245px; --y: 20px; --s: .5; animation-delay: 14.6s; }
-.particle-34 { --x: -245px; --y: 20px; --s: .8; animation-delay: 14.8s; }
-.particle-35 { --x: 150px; --y: 185px; --s: .6; animation-delay: 15s; }
-.particle-36 { --x: -150px; --y: 185px; --s: .5; animation-delay: 15.2s; }
-.particle-37 { --x: 260px; --y: 155px; --s: .4; animation-delay: 15.4s; }
-.particle-38 { --x: -260px; --y: 155px; --s: .7; animation-delay: 15.6s; }
-.particle-39 { --x: 85px; --y: -250px; --s: .5; animation-delay: 15.8s; }
-.particle-40 { --x: -85px; --y: -250px; --s: .6; animation-delay: 16s; }
-.particle-41 { --x: 0px; --y: 260px; --s: .4; animation-delay: 16.2s; }
-.particle-42 { --x: 0px; --y: -20px; --s: .9; animation-delay: 16.4s; }
-
-.cinematic-vignette {
-  position: absolute;
-  inset: 0;
-  z-index: 25;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at center, transparent 35%, rgba(0, 0, 0, 0.74) 100%),
-    linear-gradient(to bottom, rgba(0,0,0,.38), transparent 42%, rgba(0,0,0,.5));
-}
-
-.hero-transition-light {
+.gold-flare {
   position: absolute;
   left: 50%;
   top: 50%;
-  z-index: 40;
-  width: 160vw;
-  max-width: none;
-  transform: translate(-50%, -50%) scale(0.08);
+  z-index: 6;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff8dc;
+  box-shadow: 0 0 18px 5px #ffe1a0, 0 0 75px 26px rgba(221, 155, 55, .6);
+  animation: flare-bloom 7s ease-in-out both;
+}
+
+.light-sweep {
+  position: absolute;
+  top: 21%;
+  left: 9%;
+  z-index: 7;
+  width: 19%;
+  height: 58%;
+  transform: rotate(25deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 250, 222, .75), transparent);
+  filter: blur(11px);
+  mix-blend-mode: screen;
   opacity: 0;
+  animation: sweep-across 7s ease-in-out both;
+}
+
+.gold-dust {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
   pointer-events: none;
-  animation: heroLightTransition 20s ease forwards;
 }
 
-/* timeline */
-@keyframes blackCurtain {
-  0%, 10% { opacity: 1; }
-  22%, 100% { opacity: 0; }
+.gold-dust i {
+  --angle: calc(var(--particle) * 20deg);
+  --distance: calc(88px + var(--particle) * 6px);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 2.5px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffe8ac;
+  box-shadow: 0 0 9px #e6ad53;
+  opacity: 0;
+  animation: dust-flight 7s ease-out both;
+  animation-delay: calc(var(--particle) * 18ms);
 }
 
-@keyframes atmosphereWake {
-  0%, 8% { opacity: 0; }
-  20%, 100% { opacity: 1; }
+.intro-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, .34) 67%, rgba(0, 0, 0, .9) 110%);
 }
 
-@keyframes depthLight {
-  0%, 16% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.2);
-  }
-
-  34% {
-    opacity: 0.45;
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-
-  72% {
-    opacity: 0.7;
-    transform: translate(-50%, -50%) scale(1.15);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.7);
-  }
+.intro-letterbox {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 14;
+  height: clamp(15px, 4vh, 34px);
+  background: #050403;
+  animation: letterbox-open 7s ease both;
 }
 
-@keyframes distantSource {
-  0%, 18% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.2);
-  }
+.intro-letterbox-top { top: 0; }
+.intro-letterbox-bottom { bottom: 0; }
 
-  28%, 42% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  54%, 100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(3);
-  }
+.intro-exit-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none;
+  background: #fff6df;
+  opacity: 0;
+  animation: exit-flash 7s cubic-bezier(.7,0,.9,1) both;
 }
 
-@keyframes ringCamera {
-  0%, 18% {
-    opacity: 0;
-    filter: blur(18px);
-    transform: translate(-50%, -50%) scale(0.18);
-  }
-
-  34% {
-    opacity: 1;
-    filter: blur(6px);
-    transform: translate(-50%, -50%) scale(0.64);
-  }
-
-  48% {
-    filter: blur(0);
-    transform: translate(-50%, -50%) scale(0.92);
-  }
-
-  78% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  92%, 100% {
-    opacity: 1;
-    transform: translate(-50%, -52%) scale(1.12);
-  }
+@keyframes intro-fade {
+  0%, 97% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
-@keyframes ringOneCinema {
-  0%, 20% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.25) rotate(-38deg);
-  }
-
-  36% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.72) rotate(-28deg);
-  }
-
-  56% {
-    transform: translate(-68%, -50%) scale(1) rotate(-14deg);
-  }
-
-  76% {
-    transform: translate(-59%, -50%) scale(1.03) rotate(-7deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-59%, -50%) scale(1.08) rotate(-5deg);
-  }
+@keyframes ambient-reveal {
+  0% { opacity: 0; transform: scale(1.2); }
+  12% { opacity: .75; }
+  68% { opacity: 1; transform: scale(1); }
+  100% { opacity: .6; transform: scale(1.08); }
 }
 
-@keyframes ringTwoCinema {
-  0%, 34% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.24) rotate(38deg);
-  }
-
-  48% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(0.72) rotate(28deg);
-  }
-
-  64% {
-    transform: translate(-28%, -50%) scale(1) rotate(14deg);
-  }
-
-  76% {
-    transform: translate(-40%, -50%) scale(1.03) rotate(7deg);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(-40%, -50%) scale(1.08) rotate(5deg);
-  }
+@keyframes ring-one-arrival {
+  0% { opacity: 0; filter: blur(18px); transform: translate(-58%, -20%) scale(1.58) rotate(-12deg); }
+  12% { opacity: 1; }
+  34% { filter: blur(0); transform: translate(-15%, -5%) scale(.82) rotate(-3deg); }
+  67% { transform: translate(-8%, 1%) scale(.76) rotate(1deg); }
+  88% { opacity: 1; transform: translate(-7%, 1%) scale(.78) rotate(1deg); }
+  100% { opacity: 0; filter: blur(2px); transform: translate(-7%, 1%) scale(1.02) rotate(1deg); }
 }
 
-@keyframes ringGlowCinema {
-  0%, 18% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.3);
-  }
+@keyframes ring-two-arrival {
+  0%, 13% { opacity: 0; filter: blur(20px); transform: translate(58%, 24%) scale(1.42) rotate(13deg); }
+  24% { opacity: 1; }
+  47% { filter: blur(0); transform: translate(14%, 8%) scale(.8) rotate(3deg); }
+  67% { transform: translate(8%, -1%) scale(.76) rotate(-1deg); }
+  88% { opacity: 1; transform: translate(7%, -1%) scale(.78) rotate(-1deg); }
+  100% { opacity: 0; filter: blur(2px); transform: translate(7%, -1%) scale(1.02) rotate(-1deg); }
+}
 
-  44% {
-    opacity: 0.28;
-    transform: translate(-50%, -50%) scale(0.7);
-  }
+@keyframes halo-pulse {
+  0%, 20% { opacity: 0; transform: translate(-50%, -50%) scale(.35); }
+  52% { opacity: .7; transform: translate(-50%, -50%) scale(.9); }
+  73% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2.4); }
+}
 
-  74% {
-    opacity: 0.64;
-    transform: translate(-50%, -50%) scale(1.06);
-  }
+@keyframes flare-bloom {
+  0%, 49% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+  61%, 77% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(13); }
+}
 
-  94%, 100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.55);
+@keyframes sweep-across {
+  0%, 53% { opacity: 0; transform: translateX(-25%) rotate(25deg); }
+  62% { opacity: .72; }
+  75%, 100% { opacity: 0; transform: translateX(360%) rotate(25deg); }
+}
+
+@keyframes dust-flight {
+  0%, 45% { opacity: 0; transform: rotate(var(--angle)) translateX(20px) scale(.2); }
+  56% { opacity: .9; }
+  88% { opacity: .28; }
+  100% { opacity: 0; transform: rotate(var(--angle)) translateX(var(--distance)) scale(1); }
+}
+
+@keyframes orbit-one {
+  0%, 24% { opacity: 0; transform: translate(-50%, -50%) rotate(0) scale(.55); }
+  48% { opacity: .5; }
+  100% { opacity: 0; transform: translate(-50%, -50%) rotate(40deg) scale(1.3); }
+}
+
+@keyframes orbit-two {
+  0%, 31% { opacity: 0; transform: translate(-50%, -50%) rotate(0) scale(.5); }
+  57% { opacity: .38; }
+  100% { opacity: 0; transform: translate(-50%, -50%) rotate(-55deg) scale(1.55); }
+}
+
+@keyframes letterbox-open {
+  0% { transform: scaleY(1.65); }
+  18%, 82% { transform: scaleY(1); }
+  100% { transform: scaleY(2.3); }
+}
+
+@keyframes exit-flash {
+  0%, 89% { opacity: 0; }
+  96% { opacity: .88; }
+  100% { opacity: 0; }
+}
+
+@media (min-width: 769px) {
+  .cinematic-ring-intro {
+    left: 50%;
+    right: auto;
+    width: 390px;
+    transform: translateX(-50%);
   }
 }
 
-@keyframes sweepOne {
-  0%, 48% {
-    opacity: 0;
-    transform: translateX(-90px) rotate(-18deg);
-  }
-
-  56% {
-    opacity: 0.75;
-  }
-
-  66%, 100% {
-    opacity: 0;
-    transform: translateX(120px) rotate(-18deg);
-  }
+@media (max-width: 420px) {
+  .ring-stage { width: 122vw; }
+  .ring-frame img { width: 76%; }
 }
 
-@keyframes sweepTwo {
-  0%, 58% {
-    opacity: 0;
-    transform: translateX(90px) rotate(14deg);
-  }
-
-  66% {
-    opacity: 0.65;
-  }
-
-  78%, 100% {
-    opacity: 0;
-    transform: translateX(-120px) rotate(14deg);
-  }
-}
-
-@keyframes particleCinema {
-  0%, 24% {
-    opacity: 0;
-    transform: translate(0, 0) scale(0.2);
-  }
-
-  38% {
-    opacity: 0.85;
-  }
-
-  82% {
-    opacity: 0.45;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(var(--x), var(--y)) scale(var(--s));
-  }
-}
-
-@keyframes heroLightTransition {
-  0%, 86% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.08);
-  }
-
-  96% {
-    opacity: 0.92;
-    transform: translate(-50%, -50%) scale(0.88);
-  }
-
-  100% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1.3);
-  }
-}
-
-@media (max-width: 768px) {
-  .ring-camera {
-    width: 330px;
-    height: 330px;
-  }
-
-  .ring-image {
-    width: 185px;
-  }
-
-  .ring-glow-layer {
-    width: 380px;
-  }
-
-  .scene-depth-light {
-    width: 320px;
-    height: 320px;
-  }
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-ring-intro * { animation-timing-function: linear !important; }
 }
