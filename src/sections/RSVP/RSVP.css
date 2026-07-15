@@ -102,7 +102,7 @@
 }
 
 .rsvp-card {
-  padding: 18px 12px;
+  padding: 18px 12px 14px;
 
   border-radius: 24px;
 
@@ -125,6 +125,63 @@
   box-shadow:
     0 22px 52px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.rsvp-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.rsvp-field {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+  text-align: left;
+}
+
+.rsvp-field > span {
+  overflow: hidden;
+  color: #d9bf79;
+  font-size: 7px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.rsvp-field input,
+.rsvp-field select {
+  width: 100%;
+  height: 39px;
+  padding: 0 12px;
+  border: 1px solid rgba(232, 207, 138, 0.22);
+  border-radius: 12px;
+  outline: none;
+  background: rgba(4, 10, 19, 0.42);
+  color: rgba(255, 255, 255, 0.9);
+  font: inherit;
+  font-size: 10px;
+  box-shadow: inset 0 1px 8px rgba(0, 0, 0, 0.18);
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rsvp-field input::placeholder { color: rgba(255, 255, 255, 0.42); }
+
+.rsvp-field input:focus,
+.rsvp-field select:focus {
+  border-color: rgba(232, 207, 138, 0.68);
+  background: rgba(10, 17, 28, 0.64);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.08);
+}
+
+.rsvp-field select { cursor: pointer; color-scheme: dark; }
+.rsvp-field.disabled { opacity: 0.42; }
+
+.rsvp-card-separator {
+  width: 100%;
+  height: 1px;
+  margin: 15px 0 14px;
+  background: linear-gradient(to right, transparent, rgba(232, 207, 138, 0.28), transparent);
 }
 
 .rsvp-card-title {
@@ -254,7 +311,7 @@
   max-width: 260px;
   height: 38px;
 
-  margin: 20px auto 0;
+  margin: 16px auto 0;
 
   border: 1px solid rgba(232, 207, 138, 0.46);
   border-radius: 999px;
@@ -391,6 +448,11 @@
     border-radius: 22px;
   }
 
+  .rsvp-fields { gap: 8px; }
+  .rsvp-field > span { font-size: 6.5px; letter-spacing: 1.2px; }
+  .rsvp-field input,
+  .rsvp-field select { height: 37px; padding: 0 10px; font-size: 9.5px; }
+
   .rsvp-option {
     gap: 11px;
     padding: 12px;
@@ -443,6 +505,8 @@
     padding-top: 14px;
     padding-bottom: 14px;
   }
+
+  .rsvp-card-separator { margin-top: 11px; margin-bottom: 11px; }
 
   .rsvp-option {
     padding-top: 10px;

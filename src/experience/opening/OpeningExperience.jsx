@@ -1,14 +1,23 @@
 import { useEffect, useRef } from "react";
 import "./OpeningExperience.css";
 
-const INTRO_DURATION = 7000;
-const particles = Array.from({ length: 18 });
-
-const openingAsset = (file) =>
-  `${import.meta.env.BASE_URL}images/opening/${file}`;
+const INTRO_DURATION = 8000;
+const snowflakes = Array.from({ length: 34 });
+const handwrittenName = (name, startAt) => (
+  <span className="handwritten-name" aria-label={name}>
+    {Array.from(name).map((letter, index) => (
+      <i
+        key={`${name}-${index}`}
+        aria-hidden="true"
+        style={{ "--write-delay": `${startAt + index * 0.2}s` }}
+      >
+        {letter}
+      </i>
+    ))}
+  </span>
+);
 
 export default function OpeningExperience({ onComplete }) {
-  const introRef = useRef(null);
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -26,45 +35,44 @@ export default function OpeningExperience({ onComplete }) {
   }, [onComplete]);
 
   return (
-    <section
-      ref={introRef}
-      className="cinematic-ring-intro"
-      aria-label="Alyansların sinematik açılışı"
-    >
+    <section className="winter-intro" aria-label="Sinematik kış düğünü açılışı">
       <audio
         ref={audioRef}
         src={`${import.meta.env.BASE_URL}music/ring-intro-7s.wav`}
         preload="auto"
       />
-      <div className="intro-ambient" />
-      <div className="intro-orbit intro-orbit-one" />
-      <div className="intro-orbit intro-orbit-two" />
 
-      <div className="ring-stage">
-        <div className="ring-halo" />
+      <div className="winter-scene" />
+      <div className="winter-night" />
+      <div className="aurora aurora-one" />
+      <div className="aurora aurora-two" />
+      <div className="winter-stars" />
 
-        <div className="ring-frame ring-frame-one">
-          <img src={openingAsset("ring-1.png")} alt="Altın alyans" />
-        </div>
-
-        <div className="ring-frame ring-frame-two">
-          <img src={openingAsset("ring-2.png")} alt="Altın alyans" />
-        </div>
-
-        <div className="gold-flare" />
-        <div className="light-sweep" />
-      </div>
-
-      <div className="gold-dust" aria-hidden="true">
-        {particles.map((_, index) => (
-          <i key={index} style={{ "--particle": index }} />
+      <div className="winter-snow" aria-hidden="true">
+        {snowflakes.map((_, index) => (
+          <i key={index} style={{ "--flake": index }} />
         ))}
       </div>
 
-      <div className="intro-vignette" />
-      <div className="intro-letterbox intro-letterbox-top" />
-      <div className="intro-letterbox intro-letterbox-bottom" />
-      <div className="intro-exit-flash" />
+      <div className="winter-emblem" aria-hidden="true">
+        <span />
+        <span />
+      </div>
+
+      <div className="frost-card">
+        <p className="winter-kicker">Bir Kış Masalı</p>
+        <div className="winter-rule"><i /></div>
+        <h1 className="written-couple">
+          {handwrittenName("Ahmet", 2.05)}
+          <em>&amp;</em>
+          {handwrittenName("Elif", 3.75)}
+        </h1>
+        <p className="winter-date">12 · 06 · 2027</p>
+      </div>
+
+      <div className="ice-glint" />
+      <div className="winter-vignette" />
+      <div className="winter-exit" />
     </section>
   );
 }
