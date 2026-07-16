@@ -2,20 +2,6 @@ import { useEffect, useRef } from "react";
 import "./OpeningExperience.css";
 
 const INTRO_DURATION = 8000;
-const snowflakes = Array.from({ length: 34 });
-const handwrittenName = (name, startAt) => (
-  <span className="handwritten-name" aria-label={name}>
-    {Array.from(name).map((letter, index) => (
-      <i
-        key={`${name}-${index}`}
-        aria-hidden="true"
-        style={{ "--write-delay": `${startAt + index * 0.2}s` }}
-      >
-        {letter}
-      </i>
-    ))}
-  </span>
-);
 
 export default function OpeningExperience({ onComplete }) {
   const audioRef = useRef(null);
@@ -34,45 +20,40 @@ export default function OpeningExperience({ onComplete }) {
     };
   }, [onComplete]);
 
+  const base = import.meta.env.BASE_URL;
+
   return (
-    <section className="winter-intro" aria-label="Sinematik kış düğünü açılışı">
+    <section className="marble-intro" aria-label="Sinematik düğün davetiyesi açılışı">
       <audio
         ref={audioRef}
-        src={`${import.meta.env.BASE_URL}music/ring-intro-7s.wav`}
+        src={`${base}music/luxury-marble-intro-8s.wav`}
         preload="auto"
       />
 
-      <div className="winter-scene" />
-      <div className="winter-night" />
-      <div className="aurora aurora-one" />
-      <div className="aurora aurora-two" />
-      <div className="winter-stars" />
+      <div className="marble-corridor" />
+      <div className="marble-shade" />
+      <div className="gold-architecture" aria-hidden="true">
+        <i /><i /><i /><i />
+      </div>
+      <div className="gold-dust" aria-hidden="true" />
 
-      <div className="winter-snow" aria-hidden="true">
-        {snowflakes.map((_, index) => (
-          <i key={index} style={{ "--flake": index }} />
-        ))}
+      <div className="ring-stage" aria-hidden="true">
+        <div className="ring-halo" />
+        <img className="opening-ring ring-left" src={`${base}images/opening/ring-1.png`} alt="" />
+        <img className="opening-ring ring-right" src={`${base}images/opening/ring-2.png`} alt="" />
+        <div className="ring-flare" />
       </div>
 
-      <div className="winter-emblem" aria-hidden="true">
-        <span />
-        <span />
+      <div className="opening-monogram">
+        <p>Bir ömür boyu</p>
+        <div className="opening-rule"><i /></div>
+        <h1><span>Bu Gece,</span><span>Sonsuzluğun İlk Gecesi</span></h1>
+        <time dateTime="2027-06-12">12 · 06 · 2027</time>
       </div>
 
-      <div className="frost-card">
-        <p className="winter-kicker">Bir Kış Masalı</p>
-        <div className="winter-rule"><i /></div>
-        <h1 className="written-couple">
-          {handwrittenName("Ahmet", 2.05)}
-          <em>&amp;</em>
-          {handwrittenName("Elif", 3.75)}
-        </h1>
-        <p className="winter-date">12 · 06 · 2027</p>
-      </div>
-
-      <div className="ice-glint" />
-      <div className="winter-vignette" />
-      <div className="winter-exit" />
+      <div className="door-light" aria-hidden="true" />
+      <div className="marble-vignette" aria-hidden="true" />
+      <div className="marble-exit" aria-hidden="true" />
     </section>
   );
 }

@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const sampleRate = 44100;
-const duration = 7;
+const duration = 8;
 const frames = sampleRate * duration;
 const left = new Float64Array(frames);
 const right = new Float64Array(frames);
@@ -90,23 +90,39 @@ function addRise(start, length, gain) {
   }
 }
 
-// Warm D-major luxury bed: D2, A2, D3, F#3, A3.
-addTone(0, 7, 73.42, 0.11, { attack: 1.3, release: 0.8, pan: -0.1 });
-addTone(0.15, 6.85, 110, 0.075, { attack: 1.1, release: 0.9, pan: 0.12 });
-addTone(0.35, 6.65, 146.83, 0.07, { attack: 1.0, release: 0.8, pan: -0.25, shimmer: 0.12 });
-addTone(1.05, 5.95, 185, 0.055, { attack: 1.2, release: 0.9, pan: 0.28, shimmer: 0.1 });
-addTone(2.15, 4.85, 220, 0.045, { attack: 0.9, release: 0.9, pan: 0.05, shimmer: 0.18 });
+// Bespoke 8-second luxury cue. A dark D foundation opens into a warm
+// D-major colour as the rings meet, mirroring black marble turning to gold.
+// The picture deliberately holds in silence first. The score enters at 1.28s,
+// exactly when the first ring starts emerging from the dark.
+addTone(1.28, 6.72, 73.42, 0.105, { attack: .38, release: 1.05, pan: -0.08 });
+addTone(1.34, 6.66, 110, 0.066, { attack: .42, release: 1.0, pan: 0.1 });
+addTone(1.44, 3.1, 146.83, 0.058, { attack: .5, release: 1.0, pan: -0.28, shimmer: 0.08 });
+addTone(1.62, 2.9, 174.61, 0.042, { attack: .55, release: 1.0, pan: 0.3, shimmer: 0.06 });
 
-// Ring arrivals and the union highlight.
-addBell(0.65, 587.33, 0.095, -0.5);
-addBell(1.55, 739.99, 0.085, 0.48);
-addBell(2.65, 880, 0.07, -0.18);
-addRise(2.55, 2.4, 0.13);
-addImpact(4.22, 0.24);
-addBell(4.2, 1174.66, 0.12, 0);
-addBell(4.43, 1479.98, 0.065, 0.35);
-addTone(4.2, 2.8, 293.66, 0.06, { attack: 0.06, release: 0.65, pan: -0.18, shimmer: 0.22 });
-addTone(4.2, 2.8, 369.99, 0.052, { attack: 0.08, release: 0.65, pan: 0.2, shimmer: 0.2 });
+// First and second ring travel across the stereo field.
+addBell(1.3, 587.33, 0.068, -0.62);
+addBell(1.94, 698.46, 0.057, 0.6);
+addBell(2.58, 880, 0.044, -0.35);
+addBell(3.14, 1046.5, 0.04, 0.34);
+
+// A restrained orchestral lift carries the typography into view.
+addTone(2.65, 4.7, 220, 0.043, { attack: 1.2, release: 1.15, pan: -0.18, shimmer: 0.16 });
+addTone(3.0, 4.35, 261.63, 0.036, { attack: 1.15, release: 1.1, pan: 0.2, shimmer: 0.13 });
+addRise(2.45, 1.78, 0.105);
+
+// Golden union at 4.16s: low cinematic body plus crystal highlights.
+addImpact(4.16, 0.19);
+addBell(4.16, 1174.66, 0.092, -0.08);
+addBell(4.31, 1479.98, 0.052, 0.38);
+addBell(4.53, 1760, 0.027, -0.4);
+addTone(4.12, 3.6, 293.66, 0.052, { attack: 0.1, release: 1.0, pan: -0.22, shimmer: 0.2 });
+addTone(4.12, 3.6, 369.99, 0.045, { attack: 0.12, release: 1.0, pan: 0.22, shimmer: 0.18 });
+addTone(4.2, 3.45, 440, 0.029, { attack: 0.18, release: 1.05, pan: 0, shimmer: 0.22 });
+
+// Door-light transition: one final breath, never a harsh trailer hit.
+addRise(5.62, 1.82, 0.115);
+addImpact(7.08, 0.11);
+addBell(7.02, 880, 0.04, 0);
 
 // Gentle stereo ambience and final fade.
 let seed = 1234567;
@@ -114,8 +130,8 @@ for (let i = 0; i < frames; i += 1) {
   const t = i / sampleRate;
   seed = (seed * 16807) % 2147483647;
   const noise = seed / 1073741823.5 - 1;
-  const fadeIn = smooth(0, 0.45, t);
-  const fadeOut = 1 - smooth(6.15, 7, t);
+  const fadeIn = smooth(1.28, 1.55, t);
+  const fadeOut = 1 - smooth(7.18, 8, t);
   const motion = 0.008 * noise * fadeIn * fadeOut;
   left[i] = (left[i] + motion) * fadeOut;
   right[i] = (right[i] - motion * 0.82) * fadeOut;
@@ -147,6 +163,6 @@ for (let i = 0; i < frames; i += 1) {
   buffer.writeInt16LE(Math.round(clamp(right[i] * scale, -1, 1) * 32767), 46 + i * 4);
 }
 
-const output = path.join(__dirname, "..", "public", "music", "ring-intro-7s.wav");
+const output = path.join(__dirname, "..", "public", "music", "luxury-marble-intro-8s.wav");
 fs.writeFileSync(output, buffer);
 console.log(`Created ${output} (${duration}s, stereo, ${sampleRate}Hz)`);
