@@ -75,6 +75,10 @@
   opacity: 0.35;
 }
 
+.scene-intro .invitation-section-content::before {
+  display: none;
+}
+
 .scene-content-inner {
   text-align: center;
 }
@@ -100,6 +104,24 @@
   padding: 11px 24px;
   font-size: 9.5px;
   letter-spacing: 2px;
+}
+
+.scene-intro .eyebrow {
+  margin-bottom: 22px;
+  color: #ffe7a0;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 4.2px;
+  white-space: nowrap;
+}
+
+.scene-intro .section-title h2 {
+  margin-bottom: 12px;
+}
+
+.scene-intro .luxury-divider {
+  margin-top: 20px;
+  margin-bottom: 27px;
 }
 
 .position-left-center {
@@ -240,6 +262,11 @@
     padding: 10px 21px;
     font-size: 9px;
     letter-spacing: 1.8px;
+  }
+
+  .scene-intro .eyebrow {
+    font-size: 8.5px;
+    letter-spacing: 3.4px;
   }
 
   .position-bottom {

@@ -29,11 +29,11 @@ export default function App() {
     <main className="luxury-invitation">
       {!openingDone && (
         <OpeningExperience
-  onComplete={() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-    setOpeningDone(true);
-  }}
-/>
+          onComplete={() => {
+            window.scrollTo({ top: 0, behavior: "instant" });
+            setOpeningDone(true);
+          }}
+        />
       )}
 
       {openingDone && (

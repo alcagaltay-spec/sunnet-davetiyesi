@@ -32,18 +32,19 @@ export default function Hero({ onOpenInvitation }) {
 
         <div className="hero-line" />
 
-        <p className="hero-date">12 Haziran 2027</p>
+        <div className="hero-details">
+          <p className="hero-date">12 Haziran 2027</p>
 
-        <p className="hero-text">
-          Birlikte yeni bir hikâyeye başlıyoruz.
-        </p>
+          <p className="hero-text">
+            Birlikte yeni bir hikâyeye başlıyoruz.
+          </p>
+        </div>
 
         <button className="hero-button" onClick={goToStory}>
           Davetiyeyi Aç
         </button>
       </div>
 
-      <div className="hero-scroll">↓</div>
     </section>
   );
 }

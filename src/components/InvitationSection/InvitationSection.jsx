@@ -49,7 +49,7 @@ export default function InvitationSection({ section }) {
         {section.card ? <GlassCard>{content}</GlassCard> : content}
       </div>
 
-      {section.id !== "thanks" && <ScrollIndicator />}
+      {section.id !== "thanks" && section.id !== "intro" && <ScrollIndicator />}
     </section>
   );
 }
