@@ -86,7 +86,7 @@ export default function Countdown() {
         </div>
 
         <h2>
-          Bir Ömre
+          Kutlamaya
           <span>Geri Sayım</span>
         </h2>
 

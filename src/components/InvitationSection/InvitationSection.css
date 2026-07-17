@@ -83,6 +83,17 @@
   text-align: center;
 }
 
+.intro-crescent-crown {
+  display: block;
+  width: clamp(112px, 34vw, 148px);
+  height: auto;
+  margin: 0 auto -22px;
+  border-radius: 42%;
+  filter: drop-shadow(0 0 18px rgba(255, 205, 91, 0.48));
+  -webkit-mask-image: radial-gradient(ellipse 72% 45% at center, #000 54%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 45% at center, #000 54%, transparent 100%);
+}
+
 /* POSITIONS */
 
 .position-center,
@@ -301,5 +312,10 @@
 @media (max-height: 700px) {
   .scene-intro.position-center-lower .invitation-section-content {
     margin-top: -24px;
+  }
+
+  .intro-crescent-crown {
+    width: 100px;
+    margin-bottom: -20px;
   }
 }

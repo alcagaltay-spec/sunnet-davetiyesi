@@ -22,7 +22,7 @@ export default function Gallery() {
         <div className="gallery-overlay" />
 
         <div className="gallery-content">
-          <p className="gallery-eyebrow">Anılarımız</p>
+          <p className="gallery-eyebrow">Anılarım</p>
 
           <h2>Galeri</h2>
 

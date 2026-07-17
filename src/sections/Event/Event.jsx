@@ -21,7 +21,7 @@ export default function Event() {
       <div className="event-overlay" />
 
       <div className="event-card">
-        <p className="event-eyebrow">Düğün Bilgileri</p>
+        <p className="event-eyebrow">Birlikte Kutlayalım</p>
 
         <div className="event-date">
           <span className="event-day">12</span>

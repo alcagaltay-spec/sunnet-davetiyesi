@@ -2,6 +2,30 @@ import "./Story.css";
 
 const bg = (file) => `${import.meta.env.BASE_URL}images/backgrounds/${file}`;
 
+const milestones = [
+  {
+    year: "2020",
+    icon: "☻",
+    title: ["Dünyaya", "Merhaba"],
+    ornament: "✧",
+    text: "Ailem için en büyük mutluluk oldum.",
+  },
+  {
+    year: "2023",
+    icon: "♧",
+    title: ["İlk Adımlarım"],
+    ornament: "♢",
+    text: "Her gün yeni bir şey öğrendim, sevgiyle büyüdüm.",
+  },
+  {
+    year: "2026",
+    icon: "♛",
+    title: ["Bugün En Güzel Günüm"],
+    ornament: "✦",
+    text: "Bugün en özel günümde sizlerle birlikte olmaktan mutluyum.",
+  },
+];
+
 export default function Story() {
   const goToGallery = () => {
     document.getElementById("gallery")?.scrollIntoView({
@@ -20,38 +44,39 @@ export default function Story() {
       <div className="story-overlay" />
 
       <div className="story-content">
-        <p className="story-eyebrow">Hikayemiz</p>
+        <p className="story-eyebrow">Yolculuğum</p>
+        <div className="story-flourish"><span /><i>❖</i><span /></div>
 
-        <h2>Bir Bakışla Başladı</h2>
+        <h2>İlk Büyük Adım</h2>
 
+        <div className="story-flourish story-flourish-short"><span /><i>❖</i><span /></div>
         <p className="story-intro">
-          Zamanla büyüyen, yıldızlar kadar parlak bir sevdaya dönüştü.
+          Sevgiyle büyüdüm, dualarla güçlendim.<br />
+          Şimdi bu anlamlı günümü sizlerle paylaşmanın mutluluğunu yaşıyorum.
         </p>
 
         <div className="story-timeline">
-          <div className="story-card">
-            <span>2021</span>
-            <h3>İlk Tanışma</h3>
-            <p>Bir tesadüf gibi başlayan o gün, hikâyemizin ilk satırı oldu.</p>
-          </div>
-
-          <div className="story-card">
-            <span>2023</span>
-            <h3>Birlikte Yolculuk</h3>
-            <p>Yeni şehirler, yeni anılar ve aynı gökyüzünün altında büyüyen bir aşk.</p>
-          </div>
-
-          <div className="story-card">
-            <span>2026</span>
-            <h3>Bir Ömür Sözü</h3>
-            <p>O günden sonra her yol, bizi aynı geleceğe götürdü.</p>
-          </div>
+          {milestones.map((milestone) => (
+            <article className="story-card" key={milestone.year}>
+              <div className="story-card-icon" aria-hidden="true">{milestone.icon}</div>
+              <div className="story-card-body">
+                <span className="story-year">• {milestone.year} •</span>
+                <h3>
+                  {milestone.title.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </h3>
+                <div className="story-card-divider" aria-hidden="true"><i>{milestone.ornament}</i></div>
+                <p>{milestone.text}</p>
+              </div>
+            </article>
+          ))}
         </div>
 
-        <div className="story-next" onClick={goToGallery}>
-          <div className="story-line" />
-          <p>Anılarımıza Yolculuk</p>
-        </div>
+        <button type="button" className="story-next" onClick={goToGallery}>
+          <span className="story-next-line" aria-hidden="true" />
+          <strong>Bu Güzel Günü Birlikte Kutlayalım</strong>
+        </button>
       </div>
     </section>
   );

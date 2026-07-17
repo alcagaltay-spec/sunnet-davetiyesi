@@ -9,6 +9,14 @@ import ScrollIndicator from "../ScrollIndicator/ScrollIndicator";
 export default function InvitationSection({ section }) {
   const content = (
     <div className="scene-content-inner">
+      {section.id === "intro" && (
+        <img
+          className="intro-crescent-crown"
+          src={`${import.meta.env.BASE_URL}images/opening/crescent-crown.png`}
+          alt="Altın hilal ve taç süslemesi"
+        />
+      )}
+
       <SectionTitle
         eyebrow={section.eyebrow}
         title={section.title}

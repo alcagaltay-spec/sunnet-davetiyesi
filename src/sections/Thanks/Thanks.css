@@ -520,3 +520,205 @@
     background-position: center top;
   }
 }
+
+/* Aydınlık, saray temalı teşekkür sahnesi */
+.thanks-section {
+  align-items: flex-start;
+  padding: clamp(105px, 15svh, 155px) 18px max(30px, env(safe-area-inset-bottom));
+  background-position: center top;
+}
+
+.thanks-overlay {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(255, 252, 235, .56), transparent 45%),
+    linear-gradient(to bottom, rgba(255, 244, 209, .1), rgba(154, 99, 32, .12));
+}
+
+.thanks-aurora,
+.thanks-reflection {
+  display: none;
+}
+
+.thanks-snow i {
+  background: rgba(255, 255, 245, .9);
+  box-shadow: 0 0 9px rgba(255, 255, 235, .95);
+}
+
+.thanks-content {
+  width: min(74vw, 430px);
+  max-width: 430px;
+  transform: none;
+  color: #60401b;
+}
+
+.thanks-title-group {
+  transform: none;
+}
+
+.thanks-monogram {
+  position: relative;
+  display: block;
+  width: 92px;
+  height: 80px;
+  margin: 0 auto 20px;
+  border: 0;
+  border-radius: 0;
+  color: #a97727;
+  font-family: Georgia, serif;
+  box-shadow: none;
+  filter: drop-shadow(0 2px 4px rgba(255,255,255,.9));
+}
+
+.thanks-monogram::before,
+.thanks-monogram::after {
+  display: none;
+}
+
+.thanks-monogram span {
+  display: block;
+  font-size: 70px;
+  line-height: .9;
+}
+
+.thanks-monogram i {
+  position: absolute;
+  top: 23px;
+  left: 35px;
+  margin: 0;
+  color: #a97727;
+  font-size: 30px;
+}
+
+.thanks-monogram b {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.thanks-eyebrow {
+  margin-bottom: 15px;
+  color: #8b6026;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 7px;
+}
+
+.thanks-eyebrow::after {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 1px;
+  margin: 17px auto 0;
+  background: linear-gradient(90deg, transparent, #aa772b, transparent);
+}
+
+.thanks-heading {
+  margin-top: 22px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(48px, 11vw, 72px);
+  font-weight: 500;
+  line-height: .95;
+  white-space: normal;
+  color: #64431d;
+  background: none;
+  -webkit-text-fill-color: currentColor;
+  filter: none;
+  text-shadow: 0 2px 10px rgba(255, 250, 224, .95);
+}
+
+.thanks-heart-divider {
+  margin: 27px auto 28px;
+}
+
+.thanks-heart-divider span {
+  width: min(26vw, 130px);
+  background: linear-gradient(to right, transparent, rgba(157, 105, 31, .8));
+}
+
+.thanks-heart-divider span:last-child {
+  background: linear-gradient(to left, transparent, rgba(157, 105, 31, .8));
+}
+
+.thanks-heart-divider i {
+  color: #9b691f;
+}
+
+.thanks-text {
+  width: 100%;
+  max-width: 470px;
+  color: #624a30;
+  font-size: clamp(17px, 4vw, 22px);
+  font-weight: 500;
+  line-height: 1.48;
+  text-shadow: 0 1px 5px rgba(255, 250, 230, 1);
+}
+
+.thanks-signature-row {
+  width: 100%;
+  max-width: 430px;
+  margin: 42px auto 0;
+}
+
+.thanks-signature-row > span {
+  background: linear-gradient(to right, transparent, rgba(157, 105, 31, .72));
+}
+
+.thanks-signature-row > span:last-child {
+  background: linear-gradient(to left, transparent, rgba(157, 105, 31, .72));
+}
+
+.thanks-signature {
+  max-width: 100%;
+  color: #563516;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(25px, 6vw, 33px);
+  font-weight: 600;
+  line-height: 1.1;
+  text-shadow: 0 1px 3px rgba(255, 249, 219, 1), 0 0 12px rgba(255, 239, 174, .9);
+  white-space: nowrap;
+}
+
+.thanks-back-button {
+  min-width: 132px;
+  height: 38px;
+  margin-top: 42px;
+  padding: 0 19px;
+  border: 1px solid #ba8731;
+  background: linear-gradient(180deg, #25483a, #17382d);
+  color: #efd28a;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2.6px;
+  box-shadow: 0 8px 20px rgba(67, 44, 13, .28), inset 0 1px 0 rgba(255,255,255,.18), 0 0 0 3px rgba(185,132,42,.13);
+}
+
+.thanks-back-button span {
+  color: #efd28a;
+  font-size: 14px;
+}
+
+@media (max-width: 430px) {
+  .thanks-section { padding-top: clamp(92px, 14svh, 125px); }
+  .thanks-content { width: 72vw; max-width: 320px; }
+  .thanks-monogram { transform: scale(.84); margin-bottom: 10px; }
+  .thanks-eyebrow { font-size: 9px; letter-spacing: 5px; }
+  .thanks-heading { font-size: clamp(42px, 13vw, 57px); }
+  .thanks-text { max-width: 350px; font-size: 16px; }
+  .thanks-signature-row { margin-top: 30px; }
+  .thanks-signature { font-size: clamp(19px, 6vw, 24px); }
+  .thanks-back-button { margin-top: 32px; }
+}
+
+@media (max-height: 700px) {
+  .thanks-section { padding-top: 72px; }
+  .thanks-content { transform: none; }
+  .thanks-monogram { transform: scale(.72); margin-top: -12px; margin-bottom: -2px; }
+  .thanks-heading { font-size: 44px; }
+  .thanks-heart-divider { margin-block: 18px; }
+  .thanks-text { font-size: 15px; line-height: 1.4; }
+  .thanks-signature-row { margin-top: 22px; }
+  .thanks-back-button { margin-top: 25px; }
+}

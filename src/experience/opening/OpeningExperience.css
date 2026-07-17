@@ -1,292 +1,234 @@
-.leaf-intro {
+.prince-intro {
   position: fixed;
   inset: 0;
   z-index: 9999;
   overflow: hidden;
   isolation: isolate;
-  background: #172119;
-  animation: leaf-scene-fade 8s linear both;
+  background: #0b0704;
+  animation: prince-scene-fade 8s linear both;
 }
 
-.leaf-intro-bg {
-  position: absolute;
-  inset: -6%;
-  z-index: -4;
-  background: url("/images/backgrounds/hero.webp") center top / cover no-repeat;
-  transform-origin: center;
-  animation: leaf-background 8s cubic-bezier(.16, 1, .3, 1) both;
-}
-
-.leaf-intro-light {
+.prince-intro-bg {
   position: absolute;
   inset: 0;
-  z-index: -3;
+  z-index: -5;
   background:
-    radial-gradient(circle at 45% 22%, rgba(255, 242, 204, .32), transparent 29%),
-    linear-gradient(135deg, rgba(244, 221, 161, .13), transparent 47%);
-  opacity: 0;
-  animation: leaf-light 8s ease both;
+    radial-gradient(ellipse at 50% 32%, #e1c997 0, #8d6b43 38%, #332114 70%, #0b0704 100%);
+  animation: backdrop-arrival 8s ease both;
 }
 
-.leaf-intro-shade {
+.prince-intro-glow {
   position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    linear-gradient(rgba(11, 18, 12, .22), rgba(8, 15, 9, .58)),
-    radial-gradient(ellipse at center, transparent 18%, rgba(5, 12, 7, .6) 100%);
-  box-shadow: inset 0 0 100px rgba(3, 8, 4, .62);
-}
-
-.season-message {
-  position: absolute;
+  top: -12%;
   left: 50%;
-  top: 48%;
-  z-index: 3;
-  display: grid;
-  justify-items: center;
-  width: min(92vw, 360px);
-  color: #fff8e7;
-  text-align: center;
-  text-shadow: 0 4px 15px rgba(5, 12, 6, .95), 0 16px 40px rgba(3, 8, 4, .8);
-  opacity: 0;
-  filter: blur(8px);
-  transform: translate(-50%, -42%) scale(.96);
-  animation: season-message-reveal 8s cubic-bezier(.16, 1, .3, 1) both;
-}
-
-.season-message span {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(25px, 7vw, 31px);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: 1.5px;
-}
-
-.season-message .season-eyebrow {
-  color: #e7d29a;
-  font-family: "Inter", sans-serif;
-  font-size: 9px;
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: 5.5px;
-  text-transform: uppercase;
-}
-
-.season-message strong {
-  margin: 21px 0 17px;
-  color: #fff3d1;
-  font-family: "Alex Brush", cursive;
-  font-size: clamp(49px, 14.5vw, 59px);
-  font-weight: 400;
-  line-height: .9;
-  white-space: nowrap;
-  text-shadow: 0 4px 16px rgba(5, 12, 6, .95), 0 0 24px rgba(226, 192, 113, .3);
-}
-
-.season-message .invitation-line {
-  position: relative;
-  padding-top: 18px;
-  color: rgba(255, 249, 233, .9);
-  font-size: clamp(16px, 4.5vw, 19px);
-  font-weight: 300;
-  line-height: 1.48;
-  letter-spacing: .5px;
-}
-
-.season-message .invitation-line::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 42px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(231, 207, 147, .78), transparent);
+  z-index: 1;
+  width: 125%;
+  height: 88%;
   transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(255,250,218,.62), rgba(226,184,98,.18) 43%, transparent 71%);
+  filter: blur(18px);
+  opacity: 0;
+  animation: portrait-glow 8s ease both;
 }
 
-.season-message::after {
-  content: "";
-  width: 92px;
-  height: 1px;
-  margin-top: 25px;
-  background: linear-gradient(90deg, transparent, rgba(235, 211, 153, .82), transparent);
-  transform: scaleX(0);
-  animation: season-rule 8s ease both;
-}
-
-.flying-leaves {
+.prince-light-beam {
   position: absolute;
-  inset: 0;
+  top: -15%;
+  left: 50%;
   z-index: 2;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.flying-leaves i {
-  position: absolute;
-  left: -15%;
-  top: var(--start-y);
-  width: var(--size);
-  height: calc(var(--size) * .58);
-  border-radius: 100% 0 100% 0;
-  background:
-    linear-gradient(155deg, rgba(211, 202, 151, .32), transparent 46%),
-    linear-gradient(135deg, #7f8b68, #2e4932 72%);
-  box-shadow: inset 0 0 0 1px rgba(236, 225, 183, .12), 0 3px 8px rgba(5, 12, 6, .28);
+  width: 62%;
+  height: 88%;
+  transform: translateX(-50%);
+  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%);
+  background: linear-gradient(to bottom, rgba(255,250,219,.36), rgba(235,193,104,.09) 60%, transparent);
+  filter: blur(18px);
   opacity: 0;
-  transform-origin: center;
-  animation: leaf-fly var(--duration) cubic-bezier(.35, .08, .45, .94) var(--delay) infinite;
+  animation: beam-arrival 8s ease both;
 }
 
-.flying-leaves i:nth-child(3n) {
-  background: linear-gradient(135deg, #9b936c, #4e633e 72%);
-  filter: blur(.25px);
-}
-
-.flying-leaves i:nth-child(4n) {
-  border-radius: 0 100% 0 100%;
-  background: linear-gradient(135deg, #687958, #263f2d 72%);
-}
-
-.flying-leaves i:nth-child(5n) {
-  filter: blur(1px);
-  opacity: .65;
-}
-
-.flying-flowers {
+.prince-portrait-wrap {
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 0;
   overflow: hidden;
-  pointer-events: none;
-}
-
-.flying-flowers i {
-  position: absolute;
-  left: -18%;
-  top: var(--flower-start-y);
-  width: var(--flower-size);
-  height: var(--flower-size);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 50% 50%, #d5ad52 0 11%, transparent 13%),
-    radial-gradient(ellipse at 50% 15%, #fffbed 0 20%, transparent 23%),
-    radial-gradient(ellipse at 84% 40%, #f3ead2 0 20%, transparent 23%),
-    radial-gradient(ellipse at 71% 82%, #fff8e5 0 20%, transparent 23%),
-    radial-gradient(ellipse at 29% 82%, #e9dfc5 0 20%, transparent 23%),
-    radial-gradient(ellipse at 16% 40%, #fffdf3 0 20%, transparent 23%);
-  filter: drop-shadow(0 3px 5px rgba(7, 14, 8, .5));
   opacity: 0;
-  animation: flower-fly var(--flower-duration) ease-in-out var(--flower-delay) infinite;
+  transform: scale(1.14);
+  filter: blur(8px) brightness(.25);
+  animation: portrait-arrival 8s cubic-bezier(.16,1,.3,1) both;
 }
 
-.flying-flowers i:nth-child(3n) {
-  filter: blur(.45px) drop-shadow(0 4px 7px rgba(7, 14, 8, .45));
+.prince-portrait {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 34%;
+  filter: saturate(.94) contrast(1.04) sepia(.03);
 }
 
-.leaf-intro-exit {
+.prince-intro-vignette {
   position: absolute;
   inset: 0;
-  z-index: 10;
+  z-index: 3;
   pointer-events: none;
-  background: #ead9ad;
+  background:
+    linear-gradient(180deg, rgba(15,9,4,.48), transparent 23%, transparent 48%, rgba(14,8,3,.93) 96%),
+    radial-gradient(ellipse at center, transparent 36%, rgba(16,9,4,.66) 100%);
+  box-shadow: inset 0 0 105px rgba(14,8,3,.82);
+}
+
+.prince-gold-frame {
+  position: absolute;
+  inset: 14px;
+  z-index: 5;
+  border: 1px solid rgba(231,193,102,.34);
+  pointer-events: none;
   opacity: 0;
-  animation: leaf-exit 8s ease both;
+  animation: frame-reveal 8s ease both;
 }
 
-@keyframes leaf-background {
-  0% { opacity: 0; transform: scale(1.15); filter: brightness(.16) saturate(.5); }
-  16% { opacity: 1; }
-  86% { transform: scale(1.03); filter: brightness(.43) saturate(.78); }
-  100% { transform: scale(1.01); filter: brightness(.58) saturate(.84); }
+.prince-gold-frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255,237,181,.09);
 }
 
-@keyframes leaf-light {
-  0%, 8% { opacity: 0; }
-  35%, 87% { opacity: 1; }
-  100% { opacity: .5; }
+.prince-gold-frame i {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #e4bd61;
+}
+.prince-gold-frame i:nth-child(1) { top:-1px; left:-1px; border-top:2px solid; border-left:2px solid; }
+.prince-gold-frame i:nth-child(2) { top:-1px; right:-1px; border-top:2px solid; border-right:2px solid; }
+.prince-gold-frame i:nth-child(3) { bottom:-1px; left:-1px; border-bottom:2px solid; border-left:2px solid; }
+.prince-gold-frame i:nth-child(4) { right:-1px; bottom:-1px; border-right:2px solid; border-bottom:2px solid; }
+
+.intro-stars { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.intro-stars i {
+  position:absolute;
+  left:var(--x);
+  top:var(--y);
+  width:var(--size);
+  height:var(--size);
+  border-radius:50%;
+  background:#fff6d4;
+  box-shadow:0 0 11px #efc66b;
+  opacity:0;
+  animation:star-twinkle 2.2s ease-in-out var(--delay) infinite;
 }
 
-@keyframes season-message-reveal {
-  0%, 18% {
-    opacity: 0;
-    filter: blur(8px);
-    transform: translate(-50%, -38%) scale(.96);
-  }
-  38%, 82% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translate(-50%, -50%) scale(1);
-  }
-  94%, 100% {
-    opacity: 0;
-    filter: blur(4px);
-    transform: translate(-50%, -58%) scale(1.02);
-  }
+.prince-message {
+  position:absolute;
+  left:50%;
+  bottom:8.5%;
+  z-index:6;
+  display:grid;
+  justify-items:center;
+  width:min(90vw,380px);
+  transform:translateX(-50%);
+  color:#fff4d0;
+  text-align:center;
+  text-shadow:0 3px 12px #160d05,0 12px 32px #0d0804;
 }
 
-@keyframes season-rule {
-  0%, 34% { opacity: 0; transform: scaleX(0); }
-  50%, 82% { opacity: 1; transform: scaleX(1); }
-  94%, 100% { opacity: 0; transform: scaleX(1); }
+.prince-crest {
+  display:grid;
+  place-items:center;
+  width:43px;
+  height:43px;
+  border:1px solid rgba(236,200,111,.64);
+  border-radius:50%;
+  color:#edca72;
+  font-size:21px;
+  opacity:0;
+  transform:scale(.55) rotate(-12deg);
+  box-shadow:0 0 22px rgba(222,173,57,.18),inset 0 0 16px rgba(255,242,192,.08);
+  animation:crest-arrival 8s cubic-bezier(.16,1,.3,1) both;
 }
 
-@keyframes leaf-fly {
-  0% {
-    left: -15%;
-    top: var(--start-y);
-    opacity: 0;
-    transform: translate(0, 0) rotate(0deg) scale(.75);
-  }
-  12% { opacity: .9; }
-  48% {
-    transform: translate(var(--sway), -24px) rotate(calc(var(--turn) * .52)) scale(1);
-  }
-  88% { opacity: .82; }
-  100% {
-    left: 112%;
-    top: var(--end-y);
-    opacity: 0;
-    transform: translate(calc(var(--sway) * -1), 28px) rotate(var(--turn)) scale(.88);
-  }
+.prince-name {
+  margin-top:9px;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(35px,10vw,47px);
+  font-weight:500;
+  line-height:1;
+  color:#fff5d6;
+  opacity:0;
+  filter:blur(6px);
+  transform:translateY(12px);
+  animation:name-arrival 8s cubic-bezier(.16,1,.3,1) both;
 }
 
-@keyframes flower-fly {
-  0% {
-    left: -18%;
-    top: var(--flower-start-y);
-    opacity: 0;
-    transform: translateY(0) rotate(0deg) scale(.7);
-  }
-  14% { opacity: .96; }
-  48% {
-    transform: translateY(-28px) rotate(calc(var(--flower-turn) * .5)) scale(1);
-  }
-  86% { opacity: .92; }
-  100% {
-    left: 115%;
-    top: var(--flower-end-y);
-    opacity: 0;
-    transform: translateY(20px) rotate(var(--flower-turn)) scale(.82);
-  }
+.prince-rule {
+  display:flex;
+  align-items:center;
+  width:165px;
+  margin:10px 0 9px;
+  color:#e8c267;
+  opacity:0;
+  animation:rule-arrival 8s ease both;
+}
+.prince-rule span { flex:1; height:1px; background:linear-gradient(90deg,transparent,#dcb45a); }
+.prince-rule span:last-child { background:linear-gradient(90deg,#dcb45a,transparent); }
+.prince-rule i { padding:0 8px; font-size:8px; font-style:normal; }
+
+.prince-line {
+  display:flex;
+  justify-content:center;
+  width:100%;
+  font-family:"Cormorant Garamond",Georgia,serif;
+  font-size:clamp(19px,5.6vw,24px);
+  font-weight:500;
+  line-height:1.35;
+  letter-spacing:.3px;
+  color:#f5dda0;
+}
+.prince-line i {
+  display:inline-block;
+  font-style:normal;
+  opacity:0;
+  filter:blur(5px);
+  transform:translateY(12px) scale(.88);
+  animation:letter-arrival .5s cubic-bezier(.2,.8,.2,1) calc(3.45s + var(--letter-index) * .055s) forwards;
 }
 
-@keyframes leaf-exit {
-  0%, 91% { opacity: 0; }
-  97% { opacity: .86; }
-  100% { opacity: 0; }
+.prince-intro-exit {
+  position:absolute;
+  inset:0;
+  z-index:10;
+  pointer-events:none;
+  background:radial-gradient(circle at center,#fffdf0,#efdca6 38%,#b98836 72%,#624419);
+  opacity:0;
+  animation:prince-exit 8s ease both;
 }
 
-@keyframes leaf-scene-fade {
-  0%, 98% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes backdrop-arrival { 0%{opacity:0} 15%,100%{opacity:1} }
+@keyframes portrait-glow { 0%,10%{opacity:0;transform:translateX(-50%) scale(.7)} 34%,86%{opacity:1;transform:translateX(-50%) scale(1)} 100%{opacity:.4;transform:translateX(-50%) scale(1.08)} }
+@keyframes beam-arrival { 0%,12%{opacity:0;transform:translateX(-50%) scaleX(.5)} 32%,83%{opacity:.85;transform:translateX(-50%) scaleX(1)} 100%{opacity:0} }
+@keyframes portrait-arrival { 0%,7%{opacity:0;transform:scale(1.18);filter:blur(9px) brightness(.18)} 30%{opacity:1;filter:blur(0) brightness(.73)} 83%{opacity:1;transform:scale(1.025);filter:blur(0) brightness(.88)} 95%,100%{opacity:0;transform:scale(1);filter:blur(2px) brightness(1.08)} }
+@keyframes frame-reveal { 0%,15%{opacity:0;transform:scale(.96)} 30%,88%{opacity:1;transform:scale(1)} 97%,100%{opacity:0} }
+@keyframes star-twinkle { 0%,100%{opacity:.06;transform:scale(.5)} 50%{opacity:.88;transform:scale(1.45)} }
+@keyframes crest-arrival { 0%,24%{opacity:0;transform:scale(.55) rotate(-12deg)} 38%,86%{opacity:1;transform:scale(1) rotate(0)} 95%,100%{opacity:0;transform:scale(1.08)} }
+@keyframes name-arrival { 0%,28%{opacity:0;filter:blur(6px);transform:translateY(12px)} 43%,86%{opacity:1;filter:blur(0);transform:translateY(0)} 95%,100%{opacity:0;transform:translateY(-8px)} }
+@keyframes rule-arrival { 0%,36%{opacity:0;transform:scaleX(.2)} 50%,86%{opacity:1;transform:scaleX(1)} 95%,100%{opacity:0} }
+@keyframes letter-arrival { to{opacity:1;filter:blur(0);transform:translateY(0) scale(1)} }
+@keyframes prince-exit { 0%,91%{opacity:0} 97%{opacity:.96} 100%{opacity:0} }
+@keyframes prince-scene-fade { 0%,98%{opacity:1} 100%{opacity:0} }
+
+@media (min-width:769px) {
+  .prince-intro { left:50%; right:auto; width:390px; transform:translateX(-50%); }
 }
 
-@media (min-width: 769px) {
-  .leaf-intro { left: 50%; right: auto; width: 390px; transform: translateX(-50%); }
+@media (max-height:700px) {
+  .prince-message { bottom:5%; }
+  .prince-crest { width:36px; height:36px; font-size:18px; }
+  .prince-name { font-size:35px; }
+  .prince-rule { margin-block:7px; }
+  .prince-line { font-size:18px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .flying-leaves i { animation-duration: 7s; }
+@media (prefers-reduced-motion:reduce) {
+  .intro-stars i { animation-duration:3.5s; }
 }

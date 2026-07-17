@@ -26,8 +26,7 @@ export default function Hero({ onOpenInvitation }) {
 
         <h1>
           <span>Ahmet</span>
-          <strong>&</strong>
-          <span>Elif</span>
+          <span>Aras</span>
         </h1>
 
         <div className="hero-line" />
@@ -36,7 +35,7 @@ export default function Hero({ onOpenInvitation }) {
           <p className="hero-date">12 Haziran 2027</p>
 
           <p className="hero-text">
-            Birlikte yeni bir hikâyeye başlıyoruz.
+            Erkekliğe ilk adım
           </p>
         </div>
 

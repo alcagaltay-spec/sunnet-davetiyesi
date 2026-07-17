@@ -101,20 +101,21 @@
 
 .countdown-content h2 {
   display: grid;
-  gap: 2px;
+  gap: 7px;
 
   margin: 0;
 
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(48px, 14vw, 67px);
-  font-weight: 300;
-  line-height: 0.92;
+  font-size: clamp(40px, 11vw, 56px);
+  font-weight: 500;
+  line-height: 1;
 
   color: #fff8df;
 
   text-shadow:
-    0 18px 55px rgba(0, 0, 0, 0.92),
-    0 0 26px rgba(212, 175, 55, 0.1);
+    0 3px 6px rgba(34, 20, 8, 1),
+    0 14px 38px rgba(0, 0, 0, 0.95),
+    0 0 22px rgba(255, 226, 145, 0.28);
 }
 
 .countdown-content h2 span {
@@ -326,7 +327,8 @@
   }
 
   .countdown-content h2 {
-    font-size: clamp(46px, 14vw, 61px);
+    font-size: clamp(37px, 11.5vw, 49px);
+    line-height: 1.02;
   }
 
   .countdown-unit {

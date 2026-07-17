@@ -9,10 +9,10 @@ export const invitationSections = [
     overlay: "deep-vignette",
     position: "center-lower",
     background: bg("intro.webp"),
-    eyebrow: "HİKÂYEMİZİN İLK SAYFASI",
-    title: "Ahmet & Elif",
+    eyebrow: "Bugün Benim Günüm",
+    title: "Ahmet Aras",
     text: "",
-    buttonText: "Yolculuğu Başlat",
+    buttonText: "BU ANI KEŞFET",
   },
 
   {

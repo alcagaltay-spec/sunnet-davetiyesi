@@ -38,12 +38,8 @@ export default function Thanks() {
 
       <div className="thanks-content">
         <div className="thanks-title-group">
-          <div className="thanks-monogram" aria-hidden="true">
-            <span>A</span><i>&amp;</i><span>E</span>
-          </div>
-
           <p className="thanks-eyebrow">Sonsuz Sevgiyle</p>
-          <h2 className="thanks-heading">Teşekkürler</h2>
+          <h2 className="thanks-heading">İyi Ki Varsınız</h2>
         </div>
 
         <div className="thanks-heart-divider" aria-hidden="true">
@@ -51,16 +47,16 @@ export default function Thanks() {
         </div>
 
         <p className="thanks-text">
-          Bu özel günümüzde yanımızda olduğunuz,
+          Bu anlamlı günümüzde
           <br />
-          kalbinizle bizimle olduğunuz
+          sevincimizi bizimle paylaştığınız için
           <br />
-          için minnettarız.
+          gönülden teşekkür ederiz.
         </p>
 
         <div className="thanks-signature-row">
           <span aria-hidden="true" />
-          <p className="thanks-signature">Ahmet &amp; Elif</p>
+          <p className="thanks-signature">Ahmet Aras &amp; Ailesi</p>
           <span aria-hidden="true" />
         </div>
 

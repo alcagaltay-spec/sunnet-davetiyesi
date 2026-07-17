@@ -195,6 +195,19 @@
   transition: transform .8s cubic-bezier(.22,1,.36,1), filter .8s ease;
 }
 
+/* Dikey portrelerde yüzleri yatay kart kırpmasının içinde tutar. */
+.gallery-photo:nth-child(1) img {
+  object-position: center 34%;
+}
+
+.gallery-photo:nth-child(2) img {
+  object-position: center 20%;
+}
+
+.gallery-photo:nth-child(3) img {
+  object-position: center 27%;
+}
+
 .gallery-photo::after {
   content: "";
   position: absolute;
